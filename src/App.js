@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import "./App.css";
+import PostTraditional from "./components/PostTraditional";
+import NavBar from "./components/NavBar";
+import Home from "./components/Home";
+import PostRQ from "./components/PostRQ";
+import PostDetailsRQ from "./components/PostDetailsRQ";
+import PaginatedQueries from "./components/PaginatedQueries";
+import InfiniteQueries from "./components/InfiniteQueries";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/posts' element={<PostTraditional />} />
+          <Route exact path='/rq-posts' element={<PostRQ />} />
+          <Route exact path='/rq-posts/:postId' element={<PostDetailsRQ />} />
+          <Route
+            exact
+            path='/paginated-fruits'
+            element={<PaginatedQueries />}
+          />
+          <Route exact path='/infinite-fruits' element={<InfiniteQueries />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
